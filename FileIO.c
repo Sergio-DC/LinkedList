@@ -114,24 +114,30 @@ int GetInt (FILE *fp) {
  * @endcode
  *
  */
-char * GetString (FILE *fp){
+char * GetString (FILE *fp)
+{
    int	c,i;		           // Character read and index of the buffer
    char buffer[BUFSIZE];       // Assume maximum length
 
-   do {
+   do 
+   {
       c = getc (fp); 	                           /* Get next character */
       if ( c == '#' )	                             /* Skip the comment */
-         do {
+         do 
+         {
             c = getc (fp);
          } while ( c != '\n');
    } while (!isalpha(c) && !feof(fp));
 
-   if (feof(fp)){
+   if (feof(fp))
+   {
       return (NULL); /* End of file reached and no string was found */
-   } else {
+   } else 
+   {
       /* Found 1st character, begin conversion until a digit is found */
       i = 0;
-      while (isalpha (c) && !feof(fp) && (i < BUFSIZE)){
+      while (isalpha (c) && !feof(fp) && (i < BUFSIZE))
+      {
          buffer[i] = (char) c;
          i++;
          c = getc (fp);
@@ -140,7 +146,8 @@ char * GetString (FILE *fp){
 
       // If the last line is read, the end of file has not been reached
       c = getc (fp);               // See if it was the last line
-      if (c != EOF) {
+      if (c != EOF) 
+      {
          ungetc(c, fp);            // Not the end put it back
       }
 

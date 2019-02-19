@@ -34,6 +34,7 @@
  */
 
 #include <glib.h>
+#include <stdio.h>
 
 /**
  * @struct myData
